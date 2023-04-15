@@ -15,7 +15,7 @@ namespace LAB3_NHÓM
     {
         SqlConnection connection;
         SqlCommand comm;
-        string str = @"Data Source=QUOCANH;Initial Catalog=QLSVNhom;Integrated Security=True";
+        string str = @"Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSVNhom;Integrated Security=True";
         SqlDataAdapter adpt = new SqlDataAdapter();
         DataTable DSSV = new DataTable();
 
@@ -32,13 +32,6 @@ namespace LAB3_NHÓM
         public FormDSSV()
         {
             InitializeComponent();
-        }
-
-        private void FormDSSV_Load(object sender, EventArgs e)
-        {
-            connection = new SqlConnection(str);
-            connection.Open();
-            loadDatafromSV();
         }
 
         private void tbMaSV_TextChanged(object sender, EventArgs e)
@@ -120,6 +113,13 @@ namespace LAB3_NHÓM
             tbNgaysinh.Text = dgv_SV.Rows[i].Cells[2].Value.ToString();
             tbDiachi.Text = dgv_SV.Rows[i].Cells[3].Value.ToString();
             tbMalop.Text = dgv_SV.Rows[i].Cells[4].Value.ToString();
+        }
+
+        private void FormDSSV_Load(object sender, EventArgs e)
+        {
+            connection = new SqlConnection(str);
+            connection.Open();
+            loadDatafromSV();
         }
     }
 }
