@@ -70,7 +70,7 @@ namespace LAB3_NHÓM
         private void btnSV_Insert_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT SV.MALOP FROM SINHVIEN SV JOIN LOP ON LOP.MALOP = SV.MALOP JOIN NHANVIEN NV ON NV.MANV = '" + Nhanvien_NV.PUBLICKEY + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', N'" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', N'" + tbDiachi.Text + "', '" + tbMalop.Text + "', N'abc', 123)";
+            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT MALOP FROM LOP WHERE MANV = '" + Nhanvien_NV.PUBLICKEY + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', N'" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', N'" + tbDiachi.Text + "', '" + tbMalop.Text + "', N'abc', 123)";
             comm.ExecuteNonQuery();
             loadDatafromSV();
         }
