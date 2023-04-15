@@ -265,6 +265,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(827, 452);
+            this.MinimumSize = new System.Drawing.Size(827, 452);
             this.Name = "FormDSSV";
             this.Text = "Màn hình quản lý sinh viên";
             this.groupBox1.ResumeLayout(false);

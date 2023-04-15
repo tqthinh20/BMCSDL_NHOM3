@@ -195,7 +195,7 @@
             this.btnLop_Thoat.Name = "btnLop_Thoat";
             this.btnLop_Thoat.Size = new System.Drawing.Size(89, 29);
             this.btnLop_Thoat.TabIndex = 6;
-            this.btnLop_Thoat.Text = "Thoát";
+            this.btnLop_Thoat.Text = "Back";
             this.btnLop_Thoat.UseVisualStyleBackColor = true;
             this.btnLop_Thoat.Click += new System.EventHandler(this.btnLop_Thoat_Click);
             // 

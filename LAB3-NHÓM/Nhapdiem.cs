@@ -13,9 +13,9 @@ namespace LAB3_NHÓM
 {
     public partial class Nhapdiem : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSV;Integrated Security=True");
+        SqlConnection con;
         SqlCommand cmd;
-        SqlDataAdapter da;
+        string str = @"Data Source=QUOCANH;Initial Catalog=QLSVNhom;Integrated Security=True";
 
         public Nhapdiem()
         {
@@ -24,25 +24,41 @@ namespace LAB3_NHÓM
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cmd = new SqlCommand("exec sp_ins_bangdiem @manv, @masv, @mahp, @diem", con);
+            cmd = con.CreateCommand();
+            cmd.CommandText = "exec sp_ins_bangdiem @masv, @mahp, @diem, @pubkey";
 
-            cmd.Parameters.AddWithValue("@manv", textBox1.Text);
             cmd.Parameters.AddWithValue("@masv", textBox1.Text);
             cmd.Parameters.AddWithValue("@mahp", textBox2.Text);
             cmd.Parameters.AddWithValue("@diem", textBox3.Text);
+            cmd.Parameters.AddWithValue("@pubkey", Nhanvien_NV.PUBLICKEY);
 
-            con.Open();
-            da.InsertCommand = new SqlCommand("exec sp_ins_bandiem @manv, @masv, @mahp, @diem", con);
+            cmd.ExecuteNonQuery();
 
-            da.InsertCommand.ExecuteNonQuery();
+            MessageBox.Show("Nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
 
-            cmd.Dispose();
-            con.Close();
+            this.Hide();
+            FormMenu formMenu = new FormMenu();
+            formMenu.ShowDialog();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            DialogResult dg = MessageBox.Show("Về màn hình Menu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if (dg == DialogResult.Yes)
+            {
+                this.Hide();
+                FormMenu formMenu = new FormMenu();
+                formMenu.ShowDialog();
+                this.Close();
+            }
+        }
+
+        private void Nhapdiem_Load(object sender, EventArgs e)
+        {
+            con = new SqlConnection(str);
+            con.Open();
         }
     }
 }

@@ -77,7 +77,7 @@ namespace LAB3_NHÓM
         private void btnSV_Insert_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT SV.MALOP FROM SINHVIEN SV JOIN LOP ON LOP.MALOP = SV.MALOP JOIN NHANVIEN NV ON NV.MANV = '" + Nhanvien_NV.PUBLICKEY + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', '" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', '" + tbDiachi.Text + "', '" + tbMalop.Text + "')";
+            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT SV.MALOP FROM SINHVIEN SV JOIN LOP ON LOP.MALOP = SV.MALOP JOIN NHANVIEN NV ON NV.MANV = '" + Nhanvien_NV.PUBLICKEY + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', N'" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', N'" + tbDiachi.Text + "', '" + tbMalop.Text + "', N'abc', 123)";
             comm.ExecuteNonQuery();
             loadDatafromSV();
         }
@@ -93,7 +93,7 @@ namespace LAB3_NHÓM
         private void btnSV_Update_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "UPDATE SINHVIEN SET SINHVIEN.HOTEN = '" + tbHoten.Text + "', SINHVIEN.NGAYSINH = '" + tbNgaysinh.Text + "', SINHVIEN.DIACHI = '" + tbDiachi.Text + "' FROM SINHVIEN SV JOIN LOP ON SV.MALOP = LOP.MALOP WHERE LOP.MANV = '" + Nhanvien_NV.PUBLICKEY + "' AND SV.MASV = '" + tbMaSV.Text + "' ";
+            comm.CommandText = "UPDATE SINHVIEN SET SINHVIEN.HOTEN = N'" + tbHoten.Text + "', SINHVIEN.NGAYSINH = '" + tbNgaysinh.Text + "', SINHVIEN.DIACHI = N'" + tbDiachi.Text + "' FROM SINHVIEN SV JOIN LOP ON SV.MALOP = LOP.MALOP WHERE LOP.MANV = '" + Nhanvien_NV.PUBLICKEY + "' AND SV.MASV = '" + tbMaSV.Text + "' ";
             comm.ExecuteNonQuery();
             loadDatafromSV();
         }
