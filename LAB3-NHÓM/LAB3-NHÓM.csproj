@@ -46,6 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dangnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dangnhap.Designer.cs">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDSSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDSSV.Designer.cs">
+      <DependentUpon>FormDSSV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLop.Designer.cs">
+      <DependentUpon>FormLop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nhapdiem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +78,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dangnhap.resx">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDSSV.resx">
+      <DependentUpon>FormDSSV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLop.resx">
+      <DependentUpon>FormLop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Nhapdiem.resx">
       <DependentUpon>Nhapdiem.cs</DependentUpon>
     </EmbeddedResource>
