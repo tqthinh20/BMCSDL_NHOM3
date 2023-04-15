@@ -107,7 +107,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Dangnhap";
-            this.Text = "Form1";
+            this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.Dangnhap_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
