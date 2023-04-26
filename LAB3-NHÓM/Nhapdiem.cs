@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LAB3_NHÓM
 {
@@ -25,12 +26,11 @@ namespace LAB3_NHÓM
         private void button1_Click(object sender, EventArgs e)
         {
             cmd = con.CreateCommand();
-            cmd.CommandText = "exec sp_ins_bangdiem @masv, @mahp, @diem, @pubkey";
+            cmd.CommandText = "exec sp_ins_bangdiem @masv, @mahp, @diem";
 
             cmd.Parameters.AddWithValue("@masv", textBox1.Text);
             cmd.Parameters.AddWithValue("@mahp", textBox2.Text);
-            cmd.Parameters.AddWithValue("@diem", textBox3.Text);
-            cmd.Parameters.AddWithValue("@pubkey", Nhanvien_NV.PUBLICKEY);
+            cmd.Parameters.AddWithValue("@diem", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox3.Text), Nhanvien_NV.PUBLICKEY, false));
 
             cmd.ExecuteNonQuery();
 

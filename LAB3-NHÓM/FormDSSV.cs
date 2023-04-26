@@ -70,7 +70,7 @@ namespace LAB3_NHÓM
         private void btnSV_Insert_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT MALOP FROM LOP WHERE MANV = '" + Nhanvien_NV.PUBLICKEY + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', N'" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', N'" + tbDiachi.Text + "', '" + tbMalop.Text + "', N'abc', 123)";
+            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT MALOP FROM LOP WHERE MANV = '" + Nhanvien_NV.MANV + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', N'" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', N'" + tbDiachi.Text + "', '" + tbMalop.Text + "', N'abc', 123)";
             comm.ExecuteNonQuery();
             loadDatafromSV();
         }
@@ -78,7 +78,7 @@ namespace LAB3_NHÓM
         private void btnSV_Delete_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "DELETE SINHVIEN FROM SINHVIEN SV JOIN LOP ON LOP.MALOP = SV.MALOP WHERE LOP.MANV = '" + Nhanvien_NV.PUBLICKEY + "' AND MASV = '" + tbMaSV.Text + "'";
+            comm.CommandText = "DELETE SINHVIEN FROM SINHVIEN SV JOIN LOP ON LOP.MALOP = SV.MALOP WHERE LOP.MANV = '" + Nhanvien_NV.MANV + "' AND MASV = '" + tbMaSV.Text + "'";
             comm.ExecuteNonQuery();
             loadDatafromSV();
         }
@@ -86,7 +86,7 @@ namespace LAB3_NHÓM
         private void btnSV_Update_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "UPDATE SINHVIEN SET SINHVIEN.HOTEN = N'" + tbHoten.Text + "', SINHVIEN.NGAYSINH = '" + tbNgaysinh.Text + "', SINHVIEN.DIACHI = N'" + tbDiachi.Text + "' FROM SINHVIEN SV JOIN LOP ON SV.MALOP = LOP.MALOP WHERE LOP.MANV = '" + Nhanvien_NV.PUBLICKEY + "' AND SV.MASV = '" + tbMaSV.Text + "' ";
+            comm.CommandText = "UPDATE SINHVIEN SET SINHVIEN.HOTEN = N'" + tbHoten.Text + "', SINHVIEN.NGAYSINH = '" + tbNgaysinh.Text + "', SINHVIEN.DIACHI = N'" + tbDiachi.Text + "' FROM SINHVIEN SV JOIN LOP ON SV.MALOP = LOP.MALOP WHERE LOP.MANV = '" + Nhanvien_NV.MANV + "' AND SV.MASV = '" + tbMaSV.Text + "' ";
             comm.ExecuteNonQuery();
             loadDatafromSV();
         }

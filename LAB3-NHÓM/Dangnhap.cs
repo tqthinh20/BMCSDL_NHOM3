@@ -36,9 +36,10 @@ namespace LAB3_NHÓM
             {
                 while (dr.Read())
                 {
+                    Nhanvien_NV.MANV = dr["MANV"].ToString();
                     Nhanvien_NV.PUBLICKEY = dr["PUBKEY"].ToString();
                 }
-                MessageBox.Show("Đăng nhập thành công " + Nhanvien_NV.PUBLICKEY, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đăng nhập thành công " + Nhanvien_NV.MANV, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Hide();
                 FormMenu formMenu = new FormMenu();
