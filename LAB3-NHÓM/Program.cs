@@ -9,13 +9,108 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Data.SqlClient;
+using System.IO;
 
-public class Encrypt
+public class HASH
 {
     public static byte[] HashSHA1(string password)
     {
         using (HashAlgorithm algorithm = SHA1.Create())
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(password));
+    }
+}
+
+public class AES
+{
+    public static byte[] AddPkcs7Padding(byte[] data, int paddingLength)
+    {
+        if (data.Length >= 32)
+        {
+            throw new ArgumentOutOfRangeException("data", "data must be < 32 byte in length to use this function");
+        }
+        if (paddingLength > 32)
+        {
+            throw new ArgumentOutOfRangeException("paddingLength", "paddingLength must be <= 32 byte");
+        }
+
+        if (paddingLength <= data.Length)
+        {
+            return data;
+        }
+
+        var padded = new byte[paddingLength];
+        Buffer.BlockCopy(data, 0, padded, 0, data.Length);
+        for (var i = data.Length; i < padded.Length; i++)
+        {
+            padded[i] = (byte)(paddingLength - data.Length);
+        }
+        return padded;
+    }
+
+    public static byte[] Encrypt(string plainText, string Key)
+    {
+        if (plainText == null || plainText.Length <= 0)
+            throw new ArgumentNullException("plainText");
+        if (Key == null || Key.Length <= 0)
+            throw new ArgumentNullException("Key");
+
+        byte[] encrypted;
+        byte[] iv = new byte[16];
+
+        using (Aes aesAlg = Aes.Create())
+        {
+            aesAlg.Key = AddPkcs7Padding(Encoding.UTF8.GetBytes(Key), 32);
+            aesAlg.IV = iv;
+
+            ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+            using (MemoryStream msEncrypt = new MemoryStream())
+            {
+                using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                {
+                    using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                    {
+                        swEncrypt.Write(plainText);
+                    }
+                    encrypted = msEncrypt.ToArray();
+                }
+            }
+        }
+
+        return encrypted;
+    }
+
+
+    public static string Decrypt(byte[] cipherText, string Key)
+    {
+        if (cipherText == null || cipherText.Length <= 0)
+            throw new ArgumentNullException("cipherText");
+        if (Key == null || Key.Length <= 0)
+            throw new ArgumentNullException("Key");
+
+        string plaintext = null;
+        byte[] iv = new byte[16];
+
+        using (Aes aesAlg = Aes.Create())
+        {
+            aesAlg.Key = AddPkcs7Padding(Encoding.UTF8.GetBytes(Key), 32);
+            aesAlg.IV = iv;
+
+            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+            {
+                using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                {
+                    using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                    {
+                        plaintext = srDecrypt.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        return plaintext;
     }
 }
 

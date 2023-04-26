@@ -28,7 +28,7 @@ namespace LAB3_NHÓM
             cmd = new SqlCommand("select * from nhanvien where tendn=@tendn and matkhau=@matkhau", con);
             
             cmd.Parameters.AddWithValue("@tendn", textBox1.Text);
-            cmd.Parameters.AddWithValue("@matkhau", Encrypt.HashSHA1(textBox2.Text));
+            cmd.Parameters.AddWithValue("@matkhau", HASH.HashSHA1(textBox2.Text));
 
             dr = cmd.ExecuteReader();
 
