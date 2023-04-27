@@ -34,31 +34,6 @@ namespace LAB3_NHÓM
             InitializeComponent();
         }
 
-        private void tbMaSV_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
-        private void tbHoten_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
-        private void tbNgaysinh_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbDiachi_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
-        private void tbMalop_TextChanged(object sender, EventArgs e)
-        {
-        
-        }
-
         private void btnSV_Select_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();

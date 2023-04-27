@@ -41,6 +41,14 @@ namespace LAB3_NHÓM
             this.Close();
         }
 
+        private void btnMenu4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DSNV formDSNV = new DSNV();
+            formDSNV.ShowDialog();
+            this.Close();
+        }
+
         private void btnMenu_Thoat_Click(object sender, EventArgs e)
         {
             DialogResult dg = MessageBox.Show("Bạn có muốn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

@@ -56,9 +56,9 @@
             this.groupBox1.Controls.Add(this.dgv_SV);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.groupBox1.Location = new System.Drawing.Point(24, 10);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(764, 162);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -87,9 +87,9 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.groupBox2.Location = new System.Drawing.Point(24, 188);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(334, 202);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
@@ -99,47 +99,42 @@
             // 
             this.tbNgaysinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.tbNgaysinh.Location = new System.Drawing.Point(116, 86);
-            this.tbNgaysinh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbNgaysinh.Margin = new System.Windows.Forms.Padding(2);
             this.tbNgaysinh.Name = "tbNgaysinh";
             this.tbNgaysinh.Size = new System.Drawing.Size(198, 23);
             this.tbNgaysinh.TabIndex = 2;
-            this.tbNgaysinh.ValueChanged += new System.EventHandler(this.tbNgaysinh_ValueChanged);
             // 
             // tbDiachi
             // 
             this.tbDiachi.Location = new System.Drawing.Point(116, 124);
-            this.tbDiachi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDiachi.Margin = new System.Windows.Forms.Padding(2);
             this.tbDiachi.Name = "tbDiachi";
             this.tbDiachi.Size = new System.Drawing.Size(198, 23);
             this.tbDiachi.TabIndex = 3;
-            this.tbDiachi.TextChanged += new System.EventHandler(this.tbDiachi_TextChanged);
             // 
             // tbHoten
             // 
             this.tbHoten.Location = new System.Drawing.Point(116, 54);
-            this.tbHoten.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbHoten.Margin = new System.Windows.Forms.Padding(2);
             this.tbHoten.Name = "tbHoten";
             this.tbHoten.Size = new System.Drawing.Size(198, 23);
             this.tbHoten.TabIndex = 1;
-            this.tbHoten.TextChanged += new System.EventHandler(this.tbHoten_TextChanged);
             // 
             // tbMalop
             // 
             this.tbMalop.Location = new System.Drawing.Point(116, 154);
-            this.tbMalop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbMalop.Margin = new System.Windows.Forms.Padding(2);
             this.tbMalop.Name = "tbMalop";
             this.tbMalop.Size = new System.Drawing.Size(198, 23);
             this.tbMalop.TabIndex = 4;
-            this.tbMalop.TextChanged += new System.EventHandler(this.tbMalop_TextChanged);
             // 
             // tbMaSV
             // 
             this.tbMaSV.Location = new System.Drawing.Point(116, 26);
-            this.tbMaSV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbMaSV.Margin = new System.Windows.Forms.Padding(2);
             this.tbMaSV.Name = "tbMaSV";
             this.tbMaSV.Size = new System.Drawing.Size(198, 23);
             this.tbMaSV.TabIndex = 0;
-            this.tbMaSV.TextChanged += new System.EventHandler(this.tbMaSV_TextChanged);
             // 
             // label5
             // 
@@ -200,7 +195,7 @@
             // 
             this.btnSV_Back.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnSV_Back.Location = new System.Drawing.Point(742, 375);
-            this.btnSV_Back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSV_Back.Margin = new System.Windows.Forms.Padding(2);
             this.btnSV_Back.Name = "btnSV_Back";
             this.btnSV_Back.Size = new System.Drawing.Size(59, 28);
             this.btnSV_Back.TabIndex = 10;
@@ -264,7 +259,7 @@
             this.Controls.Add(this.btnSV_Back);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(827, 450);
             this.MinimumSize = new System.Drawing.Size(827, 450);
             this.Name = "FormDSSV";

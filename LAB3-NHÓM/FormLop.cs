@@ -41,21 +41,6 @@ namespace LAB3_NHÓM
             loadDataFromLop();
         }
 
-        private void txtBoxLop_MaLop_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxLop_TenLop_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxLop_MaNV_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLop_Select_Click(object sender, EventArgs e)
         {
             loadDataFromLop();

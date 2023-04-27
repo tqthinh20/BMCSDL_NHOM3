@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _20127337
+namespace LAB3_NHÓM
 {
     public partial class DSNV : Form
     {
@@ -23,7 +23,7 @@ namespace _20127337
         SqlCommand comm;
         string str = @"Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSVNhom;Integrated Security=True";
 
-        void loadDatafromNV()
+        void loadDatafromNV()       
         {
             comm = connection.CreateCommand();
             comm.CommandText = "SELECT MANV, HOTEN, EMAIL, LUONG FROM NHANVIEN";

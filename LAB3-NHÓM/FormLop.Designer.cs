@@ -92,7 +92,6 @@
             this.txtBoxLop_MaNV.Name = "txtBoxLop_MaNV";
             this.txtBoxLop_MaNV.Size = new System.Drawing.Size(175, 23);
             this.txtBoxLop_MaNV.TabIndex = 2;
-            this.txtBoxLop_MaNV.TextChanged += new System.EventHandler(this.txtBoxLop_MaNV_TextChanged);
             // 
             // txtBoxLop_TenLop
             // 
@@ -100,7 +99,6 @@
             this.txtBoxLop_TenLop.Name = "txtBoxLop_TenLop";
             this.txtBoxLop_TenLop.Size = new System.Drawing.Size(175, 23);
             this.txtBoxLop_TenLop.TabIndex = 1;
-            this.txtBoxLop_TenLop.TextChanged += new System.EventHandler(this.txtBoxLop_TenLop_TextChanged);
             // 
             // txtBoxLop_MaLop
             // 
@@ -108,7 +106,6 @@
             this.txtBoxLop_MaLop.Name = "txtBoxLop_MaLop";
             this.txtBoxLop_MaLop.Size = new System.Drawing.Size(175, 23);
             this.txtBoxLop_MaLop.TabIndex = 0;
-            this.txtBoxLop_MaLop.TextChanged += new System.EventHandler(this.txtBoxLop_MaLop_TextChanged);
             // 
             // label3
             // 

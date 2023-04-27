@@ -10,7 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Data.SqlClient;
 using System.IO;
-using _20127337;
+using LAB3_NHÓM;
 
 public class HASH
 {
