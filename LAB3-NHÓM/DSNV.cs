@@ -22,11 +22,12 @@ namespace LAB3_NHÓM
         SqlConnection connection;
         SqlCommand comm;
         string str = @"Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSVNhom;Integrated Security=True";
+        string pk;
 
         void loadDatafromNV()       
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "SELECT MANV, HOTEN, EMAIL, LUONG FROM NHANVIEN";
+            comm.CommandText = "SELECT MANV, HOTEN, EMAIL, LUONG, PUBKEY FROM NHANVIEN";
 
             SqlDataReader reader = comm.ExecuteReader();
             SqlDataReader sqlDataReader = reader;
@@ -52,7 +53,11 @@ namespace LAB3_NHÓM
                 row["MÃ NHÂN VIÊN"] = sqlDataReader["MANV"];
                 row["HỌ TÊN"] = sqlDataReader["HOTEN"];
                 row["EMAIL"] = sqlDataReader["EMAIL"];
-                row["LƯƠNG"] = Encoding.UTF8.GetString(RSA.Decrypt((byte[])sqlDataReader["LUONG"], "ADMIN", true));
+                
+                pk = sqlDataReader["PUBKEY"].ToString();
+                RSA.RSAPersistKeyInCSP(pk);
+                
+                row["LƯƠNG"] = Encoding.UTF8.GetString(RSA.Decrypt((byte[])sqlDataReader["LUONG"], pk, true));
 
                 dataTable.Rows.Add(row);
             }
@@ -81,10 +86,7 @@ namespace LAB3_NHÓM
         private void DSNV_Load(object sender, EventArgs e)
         {
             connection = new SqlConnection(str);
-            connection.Open();
-            
-            RSA.RSAPersistKeyInCSP("ADMIN");
-            
+            connection.Open();            
             setTextBox(false);
             loadDatafromNV();
         }
@@ -106,7 +108,7 @@ namespace LAB3_NHÓM
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (textBox1.Enabled == false || textBox1.Text == null || textBox3.Text == null || textBox4.Text == null || textBox6.Text == null)
+            if (textBox1.Enabled == false || textBox1.Text == null || textBox3.Text == null || textBox4.Text == null || textBox6.Text == null || textBox7.Text == null)
                 MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
             else
@@ -114,11 +116,13 @@ namespace LAB3_NHÓM
                 comm = connection.CreateCommand();
                 comm.CommandText = "EXEC SP_INS_PUBLIC_ENCRYPT_NHANVIEN @manv, @hoten, @email, @luong, @tendn, @matkhau, @pubkey";
 
+                RSA.RSAPersistKeyInCSP(textBox7.Text);
+
                 comm.Parameters.AddWithValue("@manv", textBox1.Text);
                 comm.Parameters.AddWithValue("@email", textBox2.Text);
                 comm.Parameters.AddWithValue("@tendn", textBox3.Text);
                 comm.Parameters.AddWithValue("@hoten", textBox4.Text);
-                comm.Parameters.AddWithValue("@luong", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox5.Text), "ADMIN", true));
+                comm.Parameters.AddWithValue("@luong", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox5.Text), textBox7.Text, true));
                 comm.Parameters.AddWithValue("@matkhau", HASH.HashSHA1(textBox6.Text));
                 comm.Parameters.AddWithValue("@pubkey", textBox7.Text);
 
@@ -136,6 +140,7 @@ namespace LAB3_NHÓM
             textBox4.Clear();
             textBox5.Clear();
             textBox6.Clear();
+            textBox7.Clear();
             setTextBox(false);
         }
 

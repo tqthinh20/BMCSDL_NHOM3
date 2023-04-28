@@ -193,7 +193,7 @@ namespace LAB3_NHÓM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DSNV());
+            Application.Run(new Dangnhap());
         }
     }
 }
