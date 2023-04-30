@@ -16,7 +16,7 @@ namespace LAB3_NHÓM
     {
         SqlConnection con;
         SqlCommand cmd;
-        string str = @"Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSVNhom;Integrated Security=True";
+        string str = @"Data Source=" + System.Windows.Forms.SystemInformation.ComputerName + ";Initial Catalog=QLSVNhom;Integrated Security=True";
 
         public Nhapdiem()
         {
@@ -26,7 +26,7 @@ namespace LAB3_NHÓM
         private void button1_Click(object sender, EventArgs e)
         {
             cmd = con.CreateCommand();
-            cmd.CommandText = "exec sp_ins_bangdiem @masv, @mahp, @diem";
+            cmd.CommandText = "insert into BANGDIEM values(@masv, @mahp, @diem)";
 
             cmd.Parameters.AddWithValue("@masv", textBox1.Text);
             cmd.Parameters.AddWithValue("@mahp", textBox2.Text);

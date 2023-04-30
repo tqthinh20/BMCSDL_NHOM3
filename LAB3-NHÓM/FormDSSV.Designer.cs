@@ -31,6 +31,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgv_SV = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbTendn = new System.Windows.Forms.TextBox();
+            this.tbMatkhau = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tbNgaysinh = new System.Windows.Forms.DateTimePicker();
             this.tbDiachi = new System.Windows.Forms.TextBox();
             this.tbHoten = new System.Windows.Forms.TextBox();
@@ -46,10 +50,6 @@
             this.btnSV_Insert = new System.Windows.Forms.Button();
             this.btnSV_Delete = new System.Windows.Forms.Button();
             this.btnSV_Update = new System.Windows.Forms.Button();
-            this.tbTendn = new System.Windows.Forms.TextBox();
-            this.tbMatkhau = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SV)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -72,7 +72,7 @@
             // 
             this.dgv_SV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_SV.Location = new System.Drawing.Point(8, 27);
-            this.dgv_SV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv_SV.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_SV.Name = "dgv_SV";
             this.dgv_SV.RowHeadersWidth = 51;
             this.dgv_SV.Size = new System.Drawing.Size(1004, 166);
@@ -103,6 +103,42 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Quản lý sinh viên";
+            // 
+            // tbTendn
+            // 
+            this.tbTendn.Location = new System.Drawing.Point(155, 231);
+            this.tbTendn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbTendn.Name = "tbTendn";
+            this.tbTendn.Size = new System.Drawing.Size(263, 26);
+            this.tbTendn.TabIndex = 7;
+            // 
+            // tbMatkhau
+            // 
+            this.tbMatkhau.Location = new System.Drawing.Point(155, 268);
+            this.tbMatkhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbMatkhau.Name = "tbMatkhau";
+            this.tbMatkhau.Size = new System.Drawing.Size(263, 26);
+            this.tbMatkhau.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.Location = new System.Drawing.Point(15, 268);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 20);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Mật khẩu";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label7.Location = new System.Drawing.Point(15, 231);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(119, 20);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Tên đăng nhập";
             // 
             // tbNgaysinh
             // 
@@ -211,7 +247,7 @@
             // 
             this.btnSV_Select.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSV_Select.Location = new System.Drawing.Point(577, 291);
-            this.btnSV_Select.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSV_Select.Margin = new System.Windows.Forms.Padding(4);
             this.btnSV_Select.Name = "btnSV_Select";
             this.btnSV_Select.Size = new System.Drawing.Size(143, 66);
             this.btnSV_Select.TabIndex = 11;
@@ -223,7 +259,7 @@
             // 
             this.btnSV_Insert.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSV_Insert.Location = new System.Drawing.Point(808, 291);
-            this.btnSV_Insert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSV_Insert.Margin = new System.Windows.Forms.Padding(4);
             this.btnSV_Insert.Name = "btnSV_Insert";
             this.btnSV_Insert.Size = new System.Drawing.Size(143, 66);
             this.btnSV_Insert.TabIndex = 12;
@@ -235,7 +271,7 @@
             // 
             this.btnSV_Delete.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSV_Delete.Location = new System.Drawing.Point(577, 375);
-            this.btnSV_Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSV_Delete.Margin = new System.Windows.Forms.Padding(4);
             this.btnSV_Delete.Name = "btnSV_Delete";
             this.btnSV_Delete.Size = new System.Drawing.Size(143, 66);
             this.btnSV_Delete.TabIndex = 12;
@@ -247,49 +283,13 @@
             // 
             this.btnSV_Update.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSV_Update.Location = new System.Drawing.Point(808, 375);
-            this.btnSV_Update.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSV_Update.Margin = new System.Windows.Forms.Padding(4);
             this.btnSV_Update.Name = "btnSV_Update";
             this.btnSV_Update.Size = new System.Drawing.Size(143, 66);
             this.btnSV_Update.TabIndex = 12;
             this.btnSV_Update.Text = "UPDATE";
             this.btnSV_Update.UseVisualStyleBackColor = true;
             this.btnSV_Update.Click += new System.EventHandler(this.btnSV_Update_Click);
-            // 
-            // tbTendn
-            // 
-            this.tbTendn.Location = new System.Drawing.Point(155, 231);
-            this.tbTendn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbTendn.Name = "tbTendn";
-            this.tbTendn.Size = new System.Drawing.Size(263, 26);
-            this.tbTendn.TabIndex = 7;
-            // 
-            // tbMatkhau
-            // 
-            this.tbMatkhau.Location = new System.Drawing.Point(155, 268);
-            this.tbMatkhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbMatkhau.Name = "tbMatkhau";
-            this.tbMatkhau.Size = new System.Drawing.Size(263, 26);
-            this.tbMatkhau.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(15, 268);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 20);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Mật khẩu";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label7.Location = new System.Drawing.Point(15, 231);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(119, 20);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Tên đăng nhập";
             // 
             // FormDSSV
             // 
@@ -307,6 +307,7 @@
             this.MaximumSize = new System.Drawing.Size(1100, 600);
             this.MinimumSize = new System.Drawing.Size(1100, 600);
             this.Name = "FormDSSV";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Màn hình quản lý sinh viên";
             this.Load += new System.EventHandler(this.FormDSSV_Load);
             this.groupBox1.ResumeLayout(false);

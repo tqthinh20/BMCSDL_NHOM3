@@ -15,7 +15,7 @@ namespace LAB3_NHÓM
     {
         SqlConnection con;
         SqlCommand cmd;
-        string str = @"Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSVNhom;Integrated Security=True";
+        string str = @"Data Source=" + System.Windows.Forms.SystemInformation.ComputerName + ";Initial Catalog=QLSVNhom;Integrated Security=True";
         SqlDataReader dr;
 
         public Dangnhap()
@@ -49,7 +49,6 @@ namespace LAB3_NHÓM
             else
             {
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.Exit();
             }
         }
 

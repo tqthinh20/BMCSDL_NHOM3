@@ -21,13 +21,13 @@ namespace LAB3_NHÓM
     {
         SqlConnection connection;
         SqlCommand comm;
-        string str = @"Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSVNhom;Integrated Security=True";
+        string str = @"Data Source=" + System.Windows.Forms.SystemInformation.ComputerName + ";Initial Catalog=QLSVNhom;Integrated Security=True";
         string pk;
 
         void loadDatafromNV()       
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "SELECT MANV, HOTEN, EMAIL, LUONG, PUBKEY FROM NHANVIEN";
+            comm.CommandText = "SELECT MANV, HOTEN, EMAIL, LUONG FROM NHANVIEN";
 
             SqlDataReader reader = comm.ExecuteReader();
             SqlDataReader sqlDataReader = reader;
@@ -54,7 +54,7 @@ namespace LAB3_NHÓM
                 row["HỌ TÊN"] = sqlDataReader["HOTEN"];
                 row["EMAIL"] = sqlDataReader["EMAIL"];
                 
-                pk = sqlDataReader["PUBKEY"].ToString();
+                pk = sqlDataReader["MANV"].ToString();
                 RSA.RSAPersistKeyInCSP(pk);
                 
                 row["LƯƠNG"] = Encoding.UTF8.GetString(RSA.Decrypt((byte[])sqlDataReader["LUONG"], pk, true));
@@ -116,13 +116,13 @@ namespace LAB3_NHÓM
                 comm = connection.CreateCommand();
                 comm.CommandText = "EXEC SP_INS_PUBLIC_ENCRYPT_NHANVIEN @manv, @hoten, @email, @luong, @tendn, @matkhau, @pubkey";
 
-                RSA.RSAPersistKeyInCSP(textBox7.Text);
+                RSA.RSAPersistKeyInCSP(textBox1.Text);
 
                 comm.Parameters.AddWithValue("@manv", textBox1.Text);
                 comm.Parameters.AddWithValue("@email", textBox2.Text);
                 comm.Parameters.AddWithValue("@tendn", textBox3.Text);
                 comm.Parameters.AddWithValue("@hoten", textBox4.Text);
-                comm.Parameters.AddWithValue("@luong", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox5.Text), textBox7.Text, true));
+                comm.Parameters.AddWithValue("@luong", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox5.Text), textBox1.Text, true));
                 comm.Parameters.AddWithValue("@matkhau", HASH.HashSHA1(textBox6.Text));
                 comm.Parameters.AddWithValue("@pubkey", textBox7.Text);
 
@@ -146,7 +146,15 @@ namespace LAB3_NHÓM
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dg = MessageBox.Show("Về màn hình Menu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dg == DialogResult.Yes)
+            {
+                this.Hide();
+                FormMenu formMenu = new FormMenu();
+                formMenu.ShowDialog();
+                this.Close();
+            }
         }
 
         

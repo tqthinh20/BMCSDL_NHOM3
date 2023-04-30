@@ -15,7 +15,7 @@ namespace LAB3_NHÓM
     {
         SqlConnection conn_Lop;
         SqlCommand cmd;
-        string str = @"Data Source=DESKTOP-TKQ5GJT;Initial Catalog=QLSVNhom;Integrated Security=True";
+        string str = @"Data Source=" + System.Windows.Forms.SystemInformation.ComputerName + ";Initial Catalog=QLSVNhom;Integrated Security=True";
         SqlDataAdapter adapter = new SqlDataAdapter();
         DataTable lop = new DataTable();
 
