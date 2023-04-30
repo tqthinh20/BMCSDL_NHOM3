@@ -30,7 +30,7 @@ namespace LAB3_NHÓM
 
             cmd.Parameters.AddWithValue("@masv", textBox1.Text);
             cmd.Parameters.AddWithValue("@mahp", textBox2.Text);
-            cmd.Parameters.AddWithValue("@diem", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox3.Text), Nhanvien_NV.PUBLICKEY, false));
+            cmd.Parameters.AddWithValue("@diem", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox3.Text), Nhanvien_NV.MANV, false));
 
             cmd.ExecuteNonQuery();
 

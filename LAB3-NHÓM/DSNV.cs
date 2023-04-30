@@ -23,6 +23,7 @@ namespace LAB3_NHÓM
         SqlCommand comm;
         string str = @"Data Source=" + System.Windows.Forms.SystemInformation.ComputerName + ";Initial Catalog=QLSVNhom;Integrated Security=True";
         string pk;
+        int mode = 0;
 
         void loadDatafromNV()       
         {
@@ -94,16 +95,20 @@ namespace LAB3_NHÓM
         private void button1_Click(object sender, EventArgs e)
         {
             setTextBox(true);
+            mode = 1;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             setTextBox(true);
+            mode = 2;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             setTextBox(true);
+            mode = 3;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -114,7 +119,31 @@ namespace LAB3_NHÓM
             else
             {
                 comm = connection.CreateCommand();
-                comm.CommandText = "EXEC SP_INS_PUBLIC_ENCRYPT_NHANVIEN @manv, @hoten, @email, @luong, @tendn, @matkhau, @pubkey";
+
+                if (mode == 1)
+                {
+                    if (textBox1.Text == Nhanvien_NV.MANV)
+                        MessageBox.Show("Không thể thêm nhân viên có cùng mã nhân viên của nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        comm.CommandText = "EXEC SP_INS_PUBLIC_ENCRYPT_NHANVIEN @manv, @hoten, @email, @luong, @tendn, @matkhau, @pubkey";
+                }
+
+                else if (mode == 2)
+                {
+                    if (textBox1.Text == Nhanvien_NV.MANV)
+                        MessageBox.Show("Không thể sửa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        comm.CommandText = "delete from NHANVIEN where MANV = '" + textBox1.Text + "'";
+                }
+                    
+                else if (mode == 3)
+                {
+                    if (textBox1.Text == Nhanvien_NV.MANV)
+                        MessageBox.Show("Không thể xóa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        comm.CommandText = "UPDATE NHANVIEN SET HOTEN = N'" + textBox4.Text + "', EMAIL = '" + textBox2.Text + "', LUONG = @luong, TENDN = N'" + textBox3.Text + "', MATKHAU = @matkhau, PUBKEY = N'" + textBox7.Text + "' WHERE MANV = '" + textBox1.Text + "'";
+                }
+                    
 
                 RSA.RSAPersistKeyInCSP(textBox1.Text);
 
@@ -130,6 +159,8 @@ namespace LAB3_NHÓM
                 setTextBox(false);
                 loadDatafromNV();
             }
+
+            mode = 0;
         }
 
         private void button5_Click(object sender, EventArgs e)

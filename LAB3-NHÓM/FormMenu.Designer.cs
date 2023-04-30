@@ -38,8 +38,8 @@
             // btnMenu1
             // 
             this.btnMenu1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenu1.Location = new System.Drawing.Point(49, 44);
-            this.btnMenu1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMenu1.Location = new System.Drawing.Point(81, 42);
+            this.btnMenu1.Margin = new System.Windows.Forms.Padding(4);
             this.btnMenu1.Name = "btnMenu1";
             this.btnMenu1.Size = new System.Drawing.Size(200, 86);
             this.btnMenu1.TabIndex = 0;
@@ -50,8 +50,8 @@
             // btnMenu2
             // 
             this.btnMenu2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenu2.Location = new System.Drawing.Point(49, 270);
-            this.btnMenu2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMenu2.Location = new System.Drawing.Point(81, 268);
+            this.btnMenu2.Margin = new System.Windows.Forms.Padding(4);
             this.btnMenu2.Name = "btnMenu2";
             this.btnMenu2.Size = new System.Drawing.Size(200, 86);
             this.btnMenu2.TabIndex = 1;
@@ -62,8 +62,8 @@
             // btnMenu3
             // 
             this.btnMenu3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenu3.Location = new System.Drawing.Point(49, 380);
-            this.btnMenu3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMenu3.Location = new System.Drawing.Point(81, 378);
+            this.btnMenu3.Margin = new System.Windows.Forms.Padding(4);
             this.btnMenu3.Name = "btnMenu3";
             this.btnMenu3.Size = new System.Drawing.Size(200, 86);
             this.btnMenu3.TabIndex = 2;
@@ -74,7 +74,7 @@
             // btnMenu_Thoat
             // 
             this.btnMenu_Thoat.Location = new System.Drawing.Point(224, 492);
-            this.btnMenu_Thoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMenu_Thoat.Margin = new System.Windows.Forms.Padding(4);
             this.btnMenu_Thoat.Name = "btnMenu_Thoat";
             this.btnMenu_Thoat.Size = new System.Drawing.Size(119, 36);
             this.btnMenu_Thoat.TabIndex = 3;
@@ -85,8 +85,8 @@
             // btnMenu4
             // 
             this.btnMenu4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenu4.Location = new System.Drawing.Point(49, 159);
-            this.btnMenu4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMenu4.Location = new System.Drawing.Point(81, 157);
+            this.btnMenu4.Margin = new System.Windows.Forms.Padding(4);
             this.btnMenu4.Name = "btnMenu4";
             this.btnMenu4.Size = new System.Drawing.Size(200, 86);
             this.btnMenu4.TabIndex = 4;
@@ -104,7 +104,7 @@
             this.Controls.Add(this.btnMenu3);
             this.Controls.Add(this.btnMenu2);
             this.Controls.Add(this.btnMenu1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(374, 580);
             this.MinimumSize = new System.Drawing.Size(374, 580);
             this.Name = "FormMenu";
