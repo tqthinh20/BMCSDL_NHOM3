@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LAB3_NHÓM
 {
@@ -45,7 +46,9 @@ namespace LAB3_NHÓM
         private void btnSV_Insert_Click(object sender, EventArgs e)
         {
             comm = connection.CreateCommand();
-            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT MALOP FROM LOP WHERE MANV = '" + Nhanvien_NV.MANV + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', N'" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', N'" + tbDiachi.Text + "', '" + tbMalop.Text + "', N'abc', 123)";
+            comm.CommandText = "IF '" + tbMalop.Text + "' in (SELECT MALOP FROM LOP WHERE MANV = '" + Nhanvien_NV.MANV + "') INSERT INTO SINHVIEN VALUES('" + tbMaSV.Text + "', N'" + tbHoten.Text + "', '" + tbNgaysinh.Text + "', N'" + tbDiachi.Text + "', '" + tbMalop.Text + "', N'" + tbTendn.Text + "', @matkhau)";
+            
+            comm.Parameters.AddWithValue("@matkhau", HASH.HashMD5(tbMatkhau.Text));
             comm.ExecuteNonQuery();
             loadDatafromSV();
         }
