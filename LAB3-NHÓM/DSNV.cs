@@ -118,7 +118,7 @@ namespace LAB3_NHÓM
         {
             if (mode == 1)
             {
-                if (textBox1.Text == null || textBox3.Text == null || textBox4.Text == null || textBox6.Text == null || textBox7.Text == null)
+                if (textBox1.Text.Length == 0 || textBox3.Text.Length == 0 || textBox4.Text.Length == 0 || textBox6.Text.Length == 0 || textBox7.Text.Length == 0)
                 {
                     MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -155,14 +155,14 @@ namespace LAB3_NHÓM
 
             else if (mode == 2)
             {
-                if (textBox1.Text == null)
+                if (textBox1.Text.Length == 0)
                 {
                     MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }                    
                 
                 else if (textBox1.Text == Nhanvien_NV.MANV)
                 {
-                    MessageBox.Show("Không thể sửa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Không thể xóa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }                    
                 
                 else
@@ -180,15 +180,15 @@ namespace LAB3_NHÓM
 
             else if (mode == 3)
             {
-                if (textBox1.Text == null || textBox3.Text == null || textBox4.Text == null || textBox6.Text == null || textBox7.Text == null)
+                if (textBox1.Text.Length == 0 || textBox3.Text.Length == 0 || textBox4.Text.Length == 0 || textBox6.Text.Length == 0 || textBox7.Text.Length == 0)
                 {
                     MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                     
                 
-                else if (textBox1.Enabled == false || textBox1.Text == null || textBox1.Text == Nhanvien_NV.MANV)
+                else if (textBox1.Text == Nhanvien_NV.MANV)
                 {
-                    MessageBox.Show("Không thể xóa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Không thể sửa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }                    
                 
                 else
@@ -200,12 +200,7 @@ namespace LAB3_NHÓM
 
                     comm.CommandText = "UPDATE NHANVIEN SET HOTEN = N'" + textBox4.Text + "', EMAIL = '" + textBox2.Text + "', LUONG = @luong, TENDN = N'" + textBox3.Text + "', MATKHAU = @matkhau, PUBKEY = N'" + textBox7.Text + "' WHERE MANV = '" + textBox1.Text + "'";
 
-                    comm.Parameters.AddWithValue("@manv", textBox1.Text);
-                    comm.Parameters.AddWithValue("@email", textBox2.Text);
-                    comm.Parameters.AddWithValue("@tendn", textBox3.Text);
-                    comm.Parameters.AddWithValue("@hoten", textBox4.Text);
                     comm.Parameters.AddWithValue("@matkhau", HASH.HashSHA1(textBox6.Text));
-                    comm.Parameters.AddWithValue("@pubkey", textBox7.Text);
 
                     comm.ExecuteNonQuery();
                     setTextBox(false);
