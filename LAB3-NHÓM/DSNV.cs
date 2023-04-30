@@ -56,9 +56,12 @@ namespace LAB3_NHÓM
                 row["EMAIL"] = sqlDataReader["EMAIL"];
                 
                 pk = sqlDataReader["MANV"].ToString();
-                RSA.RSAPersistKeyInCSP(pk);
                 
-                row["LƯƠNG"] = Encoding.UTF8.GetString(RSA.Decrypt((byte[])sqlDataReader["LUONG"], pk, true));
+                if (sqlDataReader["LUONG"] == null)
+                    row["LƯƠNG"] = sqlDataReader["LUONG"];
+                
+                else
+                    row["LƯƠNG"] = Encoding.UTF8.GetString(RSA.Decrypt((byte[])sqlDataReader["LUONG"], pk, true));
 
                 dataTable.Rows.Add(row);
             }
@@ -113,54 +116,104 @@ namespace LAB3_NHÓM
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (textBox1.Enabled == false || textBox1.Text == null || textBox3.Text == null || textBox4.Text == null || textBox6.Text == null || textBox7.Text == null)
-                MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-            else
+            if (mode == 1)
             {
-                comm = connection.CreateCommand();
-
-                if (mode == 1)
+                if (textBox1.Text == null || textBox3.Text == null || textBox4.Text == null || textBox6.Text == null || textBox7.Text == null)
                 {
-                    if (textBox1.Text == Nhanvien_NV.MANV)
-                        MessageBox.Show("Không thể thêm nhân viên có cùng mã nhân viên của nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                        comm.CommandText = "EXEC SP_INS_PUBLIC_ENCRYPT_NHANVIEN @manv, @hoten, @email, @luong, @tendn, @matkhau, @pubkey";
+                    MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                else if (mode == 2)
+                
+                else if (textBox1.Text == Nhanvien_NV.MANV)
                 {
-                    if (textBox1.Text == Nhanvien_NV.MANV)
-                        MessageBox.Show("Không thể sửa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Không thể thêm nhân viên có cùng mã nhân viên của nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } 
+                
+                else
+                {
+                    if (textBox5.Text != null)
+                        comm.Parameters.AddWithValue("@luong", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox5.Text), textBox1.Text, true));
                     else
-                        comm.CommandText = "delete from NHANVIEN where MANV = '" + textBox1.Text + "'";
+                        comm.Parameters.AddWithValue("@luong", textBox5.Text);
+
+                    comm.CommandText = "EXEC SP_INS_PUBLIC_ENCRYPT_NHANVIEN @manv, @hoten, @email, @luong, @tendn, @matkhau, @pubkey";
+
+                    comm.Parameters.AddWithValue("@manv", textBox1.Text);
+                    comm.Parameters.AddWithValue("@email", textBox2.Text);
+                    comm.Parameters.AddWithValue("@tendn", textBox3.Text);
+                    comm.Parameters.AddWithValue("@hoten", textBox4.Text);
+                    comm.Parameters.AddWithValue("@matkhau", HASH.HashSHA1(textBox6.Text));
+                    comm.Parameters.AddWithValue("@pubkey", textBox7.Text);
+
+                    comm.ExecuteNonQuery();
+                    setTextBox(false);
+                    loadDatafromNV();
+
+                    mode = 0;
                 }
                     
-                else if (mode == 3)
-                {
-                    if (textBox1.Text == Nhanvien_NV.MANV)
-                        MessageBox.Show("Không thể xóa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                        comm.CommandText = "UPDATE NHANVIEN SET HOTEN = N'" + textBox4.Text + "', EMAIL = '" + textBox2.Text + "', LUONG = @luong, TENDN = N'" + textBox3.Text + "', MATKHAU = @matkhau, PUBKEY = N'" + textBox7.Text + "' WHERE MANV = '" + textBox1.Text + "'";
-                }
-                    
-
-                RSA.RSAPersistKeyInCSP(textBox1.Text);
-
-                comm.Parameters.AddWithValue("@manv", textBox1.Text);
-                comm.Parameters.AddWithValue("@email", textBox2.Text);
-                comm.Parameters.AddWithValue("@tendn", textBox3.Text);
-                comm.Parameters.AddWithValue("@hoten", textBox4.Text);
-                comm.Parameters.AddWithValue("@luong", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox5.Text), textBox1.Text, true));
-                comm.Parameters.AddWithValue("@matkhau", HASH.HashSHA1(textBox6.Text));
-                comm.Parameters.AddWithValue("@pubkey", textBox7.Text);
-
-                comm.ExecuteNonQuery();
-                setTextBox(false);
-                loadDatafromNV();
             }
 
-            mode = 0;
+            else if (mode == 2)
+            {
+                if (textBox1.Text == null)
+                {
+                    MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }                    
+                
+                else if (textBox1.Text == Nhanvien_NV.MANV)
+                {
+                    MessageBox.Show("Không thể sửa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }                    
+                
+                else
+                {
+                    comm.CommandText = "delete from NHANVIEN where MANV = '" + textBox1.Text + "'";
+                    comm.Parameters.AddWithValue("@manv", textBox1.Text);
+
+                    comm.ExecuteNonQuery();
+                    setTextBox(false);
+                    loadDatafromNV();
+
+                    mode = 0;
+                }
+            }
+
+            else if (mode == 3)
+            {
+                if (textBox1.Text == null || textBox3.Text == null || textBox4.Text == null || textBox6.Text == null || textBox7.Text == null)
+                {
+                    MessageBox.Show("Dữ liệu nhập vào không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                    
+                
+                else if (textBox1.Enabled == false || textBox1.Text == null || textBox1.Text == Nhanvien_NV.MANV)
+                {
+                    MessageBox.Show("Không thể xóa thông tin nhân viên đang đăng nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }                    
+                
+                else
+                {
+                    if (textBox5.Text != null)
+                        comm.Parameters.AddWithValue("@luong", RSA.Encrypt(Encoding.UTF8.GetBytes(textBox5.Text), textBox1.Text, true));
+                    else
+                        comm.Parameters.AddWithValue("@luong", textBox5.Text);                    
+
+                    comm.CommandText = "UPDATE NHANVIEN SET HOTEN = N'" + textBox4.Text + "', EMAIL = '" + textBox2.Text + "', LUONG = @luong, TENDN = N'" + textBox3.Text + "', MATKHAU = @matkhau, PUBKEY = N'" + textBox7.Text + "' WHERE MANV = '" + textBox1.Text + "'";
+
+                    comm.Parameters.AddWithValue("@manv", textBox1.Text);
+                    comm.Parameters.AddWithValue("@email", textBox2.Text);
+                    comm.Parameters.AddWithValue("@tendn", textBox3.Text);
+                    comm.Parameters.AddWithValue("@hoten", textBox4.Text);
+                    comm.Parameters.AddWithValue("@matkhau", HASH.HashSHA1(textBox6.Text));
+                    comm.Parameters.AddWithValue("@pubkey", textBox7.Text);
+
+                    comm.ExecuteNonQuery();
+                    setTextBox(false);
+                    loadDatafromNV();
+
+                    mode = 0;
+                }
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
